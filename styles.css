@@ -548,3 +548,5 @@ a:focus-visible,button:focus-visible{outline:2px solid #7b5c50;outline-offset:3p
 .exhibition-heading{align-items:start;gap:40px}
 .exhibition-heading h3{font-size:clamp(34px,4vw,60px);line-height:1}
 @media(max-width:900px){.exhibition-heading>div{max-width:none}}
+
+.masoom-hero{display:block;padding:0!important}.masoom-hero img{display:block;width:100%;height:auto}
