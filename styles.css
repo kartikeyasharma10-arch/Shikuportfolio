@@ -557,3 +557,10 @@ a:focus-visible,button:focus-visible{outline:2px solid #7b5c50;outline-offset:3p
 .ig-head{flex-wrap:wrap}.ig-id{flex:1 1 110px}.ig-btn{margin-left:auto}.ig-id span{white-space:normal}
 .ig-id strong{overflow:visible;font-size:13px;flex-wrap:wrap}
 .hero h1 span,.hero h1 span:nth-child(2){margin-left:0!important;text-indent:0}
+
+/* hero name -> VJ morph */
+.morph-on .hero h1{opacity:0}
+.morph-on .wordmark{opacity:0}
+.name-morph{position:fixed;left:0;top:0;z-index:79;transform-origin:0 0;color:#f8f5ef;mix-blend-mode:difference;pointer-events:none;white-space:nowrap;will-change:transform}
+.nm-row{display:block;will-change:transform}
+.nm-rest{will-change:opacity}
