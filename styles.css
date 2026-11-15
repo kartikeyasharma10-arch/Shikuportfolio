@@ -786,3 +786,65 @@ a:focus-visible,button:focus-visible{outline:2px solid #7b5c50;outline-offset:3p
   .hero h1{margin:0!important}
   .scroll-cue{left:20px!important;bottom:calc(4vh + env(safe-area-inset-bottom,0px))!important;font-size:10px!important;letter-spacing:.2em!important}
 }
+
+/* ===== phone-lite: less text on phones ===== */
+@media(max-width:600px){
+  .m-clamp{display:-webkit-box!important;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .m-clamp.open{display:block!important;-webkit-line-clamp:unset}
+  .m-more{background:none;border:0;padding:6px 0 2px;margin:2px 0 0;font:500 10px/1 "DM Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:inherit;opacity:.75;text-decoration:underline;text-underline-offset:4px;cursor:pointer;min-height:32px}
+  .masoom-feature-copy .m-more{color:#5e594f}
+  /* step lists */
+  .m-acc{cursor:pointer;position:relative}
+  .m-acc p{display:none!important}
+  .m-acc.open p{display:block!important}
+  .m-acc h3{padding-right:26px;margin-bottom:0!important}
+  .m-acc.open h3{margin-bottom:4px!important}
+  .m-acc::after{content:"+";position:absolute;right:2px;top:10px;font:300 20px/1 "DM Sans",sans-serif;opacity:.6}
+  .m-acc.open::after{content:"–"}
+  .process-grid article.m-acc{padding:10px 4px!important}
+  .process-grid article.m-acc::after{top:12px}
+  /* marketing: tags duplicate the steps, hide on phone */
+  .influencer-head-final .role-tags{display:none!important}
+  .influencer-head-final .influencer-role-copy>p{-webkit-line-clamp:2}
+  /* tech cards */
+  .tech-card.m-card ul,.tech-card.m-card .tech-flow,.tech-card.m-card .ease-table{display:none}
+  .tech-card.m-card.open ul,.tech-card.m-card.open .tech-flow,.tech-card.m-card.open .ease-table{display:block}
+  .tech-card.m-card.open .ease-table{display:grid}
+  .tech-card.m-card>p{-webkit-line-clamp:3}
+  .tech-card.m-card.open>p{display:block!important}
+  .tech-card.m-card .m-more{color:#4c4941}
+  /* tidy: brand block tags, process role */
+  .social-role-block .role-tags,.instagram-final .role-tags{display:none}
+}
+
+/* ===== App-like phone UX ===== */
+.m-tabbar{display:none}
+@media(max-width:600px){
+  body{padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+  .m-tabbar{display:flex;position:fixed;z-index:90;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));height:58px;padding:5px;gap:2px;background:rgba(24,24,21,.86);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);border:1px solid rgba(255,255,255,.12);border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.28);transform:translateY(140%);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+  .m-tabbar.show{transform:none}
+  .m-tabbar.hide{transform:translateY(160%)}
+  .m-tabbar a,.m-tabbar button{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:none;border:0;border-radius:15px;color:#cfc9be;font:500 9.5px/1 "DM Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .25s,color .25s}
+  .m-tabbar i{font:400 9px/1 "DM Sans",sans-serif;font-style:normal;letter-spacing:.08em;opacity:.55}
+  .m-tabbar .on{background:#f2eee7;color:#1b1a17}
+  .m-tabbar .on i{opacity:.7}
+  .m-tabbar a:active,.m-tabbar button:active{transform:scale(.96)}
+  /* top hamburger stays for closing the full menu; keep it clear of content */
+  /* ---- swipe rails instead of long vertical lists ---- */
+  .mk-process,.process-grid,.tech-grid,.instagram-final-grid{display:flex!important;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:10px!important;margin-left:-20px!important;margin-right:-20px!important;padding:2px 20px 6px!important;scroll-padding-left:20px;border-top:0!important}
+  .mk-process::-webkit-scrollbar,.process-grid::-webkit-scrollbar,.tech-grid::-webkit-scrollbar,.instagram-final-grid::-webkit-scrollbar,.logo-grid-hi::-webkit-scrollbar,.expo-grid-hi::-webkit-scrollbar{display:none}
+  .mk-process li,.mk-process li+li,.process-grid article,.tech-grid .tech-card{flex:0 0 78vw!important;width:78vw;scroll-snap-align:start;border-radius:16px!important;padding:16px 16px 18px!important;min-height:0!important;display:block!important}
+  .mk-process li,.mk-process li+li{background:rgba(255,255,255,.06)!important;border:1px solid rgba(255,255,255,.14)!important;border-left:1px solid rgba(255,255,255,.14)!important}
+  .process-grid article{background:rgba(40,39,32,.06)!important;border:1px solid rgba(40,39,32,.14)!important}
+  .mk-process li b,.process-grid article b{display:inline-block;font:500 10px/1 "DM Sans",sans-serif;letter-spacing:.14em;margin:0 0 12px!important;padding:5px 9px;border-radius:99px;border:1px solid currentColor;opacity:.7}
+  .mk-process li h3,.process-grid article h3{font-size:24px!important;margin:0 0 8px!important;line-height:1.1}
+  .mk-process li p,.process-grid article p{display:block!important;font-size:13px!important;line-height:1.55!important;margin:0!important;display:-webkit-box!important;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+  .tech-grid .tech-card{flex-basis:84vw!important;width:84vw}
+  .instagram-final-grid a{flex:0 0 84vw;scroll-snap-align:start;border-radius:14px}
+  .instagram-final-grid img{height:auto!important;width:100%}
+  /* logos: two rows that swipe sideways */
+  .logo-grid-hi,.expo-grid-hi{display:grid!important;grid-auto-flow:column;grid-template-rows:repeat(2,auto)!important;grid-template-columns:none!important;grid-auto-columns:34vw!important;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:6px!important;margin-left:-20px!important;margin-right:-20px!important;padding:0 20px 4px}
+  .logo-grid-hi figure,.expo-grid-hi figure{scroll-snap-align:start}
+  .social-role-tags,.social-flow{display:none!important}
+  .merch-metrics-final{margin-bottom:6px}
+}
