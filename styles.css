@@ -772,3 +772,17 @@ a:focus-visible,button:focus-visible{outline:2px solid #7b5c50;outline-offset:3p
 }
 .influencer-head-final .influencer-role-copy>strong{white-space:normal!important}
 @media(max-width:600px){.influencer-head-final .influencer-role-copy>strong{font-size:28px!important;line-height:1.08!important}.influencer-head-final .influencer-role-copy{min-width:0}.mk-process li{min-width:0}}
+
+/* Hero on portrait screens: keep each model's face in frame; phone shows picture + name only */
+@media(max-aspect-ratio:1/1){
+  .hero-slide:nth-child(1) img{object-position:66% 30%}
+  .hero-slide:nth-child(2) img{object-position:69% 25%}
+  .hero-slide:nth-child(3) img{object-position:70% 35%}
+  .hero-shade{background:linear-gradient(180deg,rgba(0,0,0,.18) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,.05) 55%,rgba(0,0,0,.45) 100%)!important}
+}
+@media(max-width:600px){
+  .hero-type .eyebrow,.hero-type p,.hero-index{display:none!important}
+  .hero-type{bottom:calc(11vh + env(safe-area-inset-bottom,0px))!important}
+  .hero h1{margin:0!important}
+  .scroll-cue{left:20px!important;bottom:calc(4vh + env(safe-area-inset-bottom,0px))!important;font-size:10px!important;letter-spacing:.2em!important}
+}
