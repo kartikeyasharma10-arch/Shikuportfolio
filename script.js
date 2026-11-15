@@ -162,7 +162,7 @@
     if (role) role.textContent = c.role;
     if (gallery) {
       const pages = Array.from({length:c.pageCount}, (_,i) => String(i+1).padStart(2,"0"));
-      gallery.innerHTML = pages.map((p,i) => `<figure class="lookbook-page"><img loading="lazy" decoding="async" src="${c.lookbookDir}/${p}.webp?v=20261115c" alt="${c.title} lookbook, page ${i+1} of ${c.pageCount}"><figcaption>${String(i+1).padStart(2,"0")} / ${String(c.pageCount).padStart(2,"0")}</figcaption></figure>`).join("");
+      gallery.innerHTML = pages.map((p,i) => `<figure class="lookbook-page"><img loading="lazy" decoding="async" src="${c.lookbookDir}/${p}.webp?v=20261115d" alt="${c.title} lookbook, page ${i+1} of ${c.pageCount}"><figcaption>${String(i+1).padStart(2,"0")} / ${String(c.pageCount).padStart(2,"0")}</figcaption></figure>`).join("");
     }
 
     lastFocus = document.activeElement;
@@ -196,14 +196,17 @@
   // ---------- Main collection switcher ----------
   const collectionHero = qs("#collectionHeroImage");
   const collectionFill = qs(".collection-fill");
-  const collectionFeature = qs("#collectionFeature");
 
   const activateCollection = key => {
     const data = finalCollectionData[key];
     if (!data) return;
 
-    qsa(".collection-tab-final").forEach(t => {
-      t.classList.toggle("active", t.dataset.collection === key);
+    qsa(".coll-item").forEach(item => {
+      const on = item.dataset.collection === key;
+      item.classList.toggle("active", on);
+      const t = qs(".collection-tab-final", item);
+      t.classList.toggle("active", on);
+      t.setAttribute("aria-expanded", on ? "true" : "false");
     });
 
     if (collectionHero) {
@@ -217,28 +220,25 @@
 
     if (collectionFill) collectionFill.style.backgroundImage = `url("${data.img}")`;
 
-    if (collectionFeature) {
-      const season = qs(".feature-season", collectionFeature);
-      const title = qs(".feature-title", collectionFeature);
-      const copy = qs(".feature-copy", collectionFeature);
-      const button = qs(".feature-open", collectionFeature);
-
-      if (season) season.textContent = data.season;
-      if (title) title.textContent = data.title;
-      if (copy) copy.textContent = data.copy;
-      if (button) button.dataset.collection = key;
-    }
   };
 
   qsa(".collection-tab-final").forEach(tab => {
     const key = tab.dataset.collection;
-    tab.addEventListener("mouseenter", () => activateCollection(key));
-    tab.addEventListener("focus", () => activateCollection(key));
-    tab.addEventListener("click", () => activateCollection(key));
+    tab.addEventListener("click", () => {
+      const item = tab.closest(".coll-item");
+      if (item.classList.contains("active")) {
+        // second click folds the panel; the picture stays
+        item.classList.remove("active");
+        tab.classList.remove("active");
+        tab.setAttribute("aria-expanded", "false");
+      } else {
+        activateCollection(key);
+      }
+    });
   });
 
-  qs(".collections-final .feature-open")?.addEventListener("click", e => {
-    openCollection(e.currentTarget.dataset.collection);
+  qsa(".collections-final .feature-open").forEach(btn => {
+    btn.addEventListener("click", () => openCollection(btn.dataset.collection));
   });
 
   // ---------- Videos ----------

@@ -564,3 +564,26 @@ a:focus-visible,button:focus-visible{outline:2px solid #7b5c50;outline-offset:3p
 .name-morph{position:fixed;left:0;top:0;z-index:79;transform-origin:0 0;color:#fff;mix-blend-mode:normal;text-shadow:0 2px 22px rgba(0,0,0,.38);pointer-events:none;white-space:nowrap;will-change:transform}
 .nm-row{display:block;will-change:transform}
 .nm-rest{will-change:opacity}
+
+/* Collections accordion: name stays, details drop down */
+.collection-nav-final{display:flex;flex-direction:column;align-items:stretch;border-top:1px solid rgba(45,46,39,.25);max-width:580px}
+.coll-item{border-bottom:1px solid rgba(45,46,39,.2)}
+.collection-tab-final,.collection-tab-final.active{display:flex;align-items:baseline;width:100%;padding:14px 0;opacity:.62;transform:none;border-bottom:0;font-size:clamp(27px,3vw,43px);line-height:1;transition:opacity .3s,color .3s}
+.collection-tab-final:hover,.collection-tab-final.active{opacity:1;transform:none}
+.collection-tab-final span{margin-right:14px;flex:none}
+.coll-chevron{margin-left:auto;align-self:center;width:9px;height:9px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);transition:transform .35s ease;flex:none;margin-right:6px}
+.collection-tab-final.active .coll-chevron{transform:rotate(-135deg)}
+.coll-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}
+.coll-item.active .coll-panel{grid-template-rows:1fr}
+.coll-panel-inner{overflow:hidden;min-height:0;padding:0 0 0 30px;opacity:0;transition:opacity .35s ease}
+.coll-item.active .coll-panel-inner{opacity:1;padding-bottom:22px}
+.coll-panel .feature-season{display:block;color:#5e6256;margin-bottom:10px}
+.coll-panel .feature-copy{font-family:"DM Sans",sans-serif;font-size:13px;line-height:1.75;max-width:400px;margin:0}
+.collection-credit{margin-top:22px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#6a6b60}
+@media(max-width:900px){
+  .collection-nav-final{flex-direction:column;flex-wrap:nowrap;max-width:none}
+  .collection-tab-final,.collection-tab-final.active{font-size:clamp(26px,8vw,38px);opacity:.62}
+  .collection-tab-final.active{opacity:1}
+  .coll-panel-inner{padding-left:26px}
+}
+@media(prefers-reduced-motion:reduce){.coll-panel,.coll-panel-inner,.coll-chevron{transition:none}}

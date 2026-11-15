@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Italiana&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261115c" />
+  <link rel="stylesheet" href="styles.css?v=20261115d" />
 </head>
 <body>
   <a class="skip-link" href="#about">Skip to content</a>
@@ -101,20 +101,49 @@
   </div>
   <div class="collections-final-ui">
     <div class="section-kicker light">02 / Selected Work — Design &amp; Product Development</div>
-    <div class="collection-nav-final">
-      <button class="collection-tab-final active" data-collection="saawaniya" data-img="assets/images/collection-saawaniya.webp"><span>01</span>Saawaniya</button>
-      <button class="collection-tab-final" data-collection="bagh" data-img="assets/images/collection-bagh.webp"><span>02</span>Bagh</button>
-      <button class="collection-tab-final" data-collection="pastel" data-img="assets/images/collection-pastel.webp"><span>03</span>Pastel Mist</button>
-      <button class="collection-tab-final" data-collection="shringaar" data-img="assets/images/collection-shringaar.webp"><span>04</span>Shringaar</button>
-      <button class="collection-tab-final" data-collection="aangan" data-img="assets/images/collection-aangan.webp"><span>05</span>Aangan</button>
+    <div class="collection-nav-final" id="collectionAccordion">
+      <div class="coll-item active" data-collection="saawaniya">
+        <button class="collection-tab-final active" data-collection="saawaniya" data-img="assets/images/collection-saawaniya.webp" aria-expanded="true" aria-controls="coll-panel-saawaniya"><span>01</span>Saawaniya<i class="coll-chevron" aria-hidden="true"></i></button>
+        <div class="coll-panel" id="coll-panel-saawaniya" role="region" aria-label="Saawaniya details"><div class="coll-panel-inner">
+          <span class="feature-season">Festive 2026</span>
+          <p class="feature-copy">Bandhani × Banarasi brocade × zardozi. A Saawan-led festive collection developed end to end.</p>
+          <button class="feature-open" data-collection="saawaniya">View collection ↗</button>
+        </div></div>
+      </div>
+      <div class="coll-item" data-collection="bagh">
+        <button class="collection-tab-final" data-collection="bagh" data-img="assets/images/collection-bagh.webp" aria-expanded="false" aria-controls="coll-panel-bagh"><span>02</span>Bagh<i class="coll-chevron" aria-hidden="true"></i></button>
+        <div class="coll-panel" id="coll-panel-bagh" role="region" aria-label="Bagh details"><div class="coll-panel-inner">
+          <span class="feature-season">Festive 2025</span>
+          <p class="feature-copy">Jewel tones, brocade and corset-led silhouettes, and the brand's first experiments with sleeveless cuts.</p>
+          <button class="feature-open" data-collection="bagh">View collection ↗</button>
+        </div></div>
+      </div>
+      <div class="coll-item" data-collection="pastel">
+        <button class="collection-tab-final" data-collection="pastel" data-img="assets/images/collection-pastel.webp" aria-expanded="false" aria-controls="coll-panel-pastel"><span>03</span>Pastel Mist<i class="coll-chevron" aria-hidden="true"></i></button>
+        <div class="coll-panel" id="coll-panel-pastel" role="region" aria-label="Pastel Mist details"><div class="coll-panel-inner">
+          <span class="feature-season">Spring / Summer 2025</span>
+          <p class="feature-copy">Summer silk, hand appliqué and a softer contemporary language built from concept to market.</p>
+          <button class="feature-open" data-collection="pastel">View collection ↗</button>
+        </div></div>
+      </div>
+      <div class="coll-item" data-collection="shringaar">
+        <button class="collection-tab-final" data-collection="shringaar" data-img="assets/images/collection-shringaar.webp" aria-expanded="false" aria-controls="coll-panel-shringaar"><span>04</span>Shringaar<i class="coll-chevron" aria-hidden="true"></i></button>
+        <div class="coll-panel" id="coll-panel-shringaar" role="region" aria-label="Shringaar details"><div class="coll-panel-inner">
+          <span class="feature-season">Festive / Wedding 2024</span>
+          <p class="feature-copy">Tissue, Chiniya silk, Chanderi and brocade shaped into a festive wardrobe rooted in adornment.</p>
+          <button class="feature-open" data-collection="shringaar">View collection ↗</button>
+        </div></div>
+      </div>
+      <div class="coll-item" data-collection="aangan">
+        <button class="collection-tab-final" data-collection="aangan" data-img="assets/images/collection-aangan.webp" aria-expanded="false" aria-controls="coll-panel-aangan"><span>05</span>Aangan<i class="coll-chevron" aria-hidden="true"></i></button>
+        <div class="coll-panel" id="coll-panel-aangan" role="region" aria-label="Aangan details"><div class="coll-panel-inner">
+          <span class="feature-season">Spring / Summer 2024</span>
+          <p class="feature-copy">A considered small-batch launch designed with XXS–8XL inclusivity in handwoven Chiniya silk.</p>
+          <button class="feature-open" data-collection="aangan">View collection ↗</button>
+        </div></div>
+      </div>
     </div>
-    <div class="collection-copy-final" id="collectionFeature">
-      <span class="feature-season">Festive 2026</span>
-      <h2 class="feature-title">Saawaniya</h2>
-      <p class="feature-copy">Bandhani × Banarasi brocade × zardozi. A Saawan-led festive collection developed end to end.</p>
-      <button class="feature-open" data-collection="saawaniya">View collection ↗</button>
-      <p class="collection-credit">Collections designed and developed during my time at NEITRI.</p>
-    </div>
+    <p class="collection-credit">Collections designed and developed during my time at NEITRI.</p>
   </div>
 </section>
 
@@ -364,7 +393,7 @@
 </section>
   </main>
 
-<script src="script.js?v=20261115c"></script>
-<script src="hero-morph.js?v=20261115c"></script>
+<script src="script.js?v=20261115d"></script>
+<script src="hero-morph.js?v=20261115d"></script>
 </body>
 </html>
