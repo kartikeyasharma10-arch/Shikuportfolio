@@ -561,6 +561,6 @@ a:focus-visible,button:focus-visible{outline:2px solid #7b5c50;outline-offset:3p
 /* hero name -> VJ morph */
 .morph-on .hero h1{opacity:0}
 .morph-on .wordmark{opacity:0}
-.name-morph{position:fixed;left:0;top:0;z-index:79;transform-origin:0 0;color:#f8f5ef;mix-blend-mode:difference;pointer-events:none;white-space:nowrap;will-change:transform}
+.name-morph{position:fixed;left:0;top:0;z-index:79;transform-origin:0 0;color:#fff;mix-blend-mode:normal;text-shadow:0 2px 22px rgba(0,0,0,.38);pointer-events:none;white-space:nowrap;will-change:transform}
 .nm-row{display:block;will-change:transform}
 .nm-rest{will-change:opacity}
