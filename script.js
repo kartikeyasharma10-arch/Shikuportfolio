@@ -68,7 +68,7 @@
       meta: ["~14 styles", "Bandhani silk", "Banarasi brocade", "Zardozi", "Co-ords + kurta sets"],
       role: "Concept and collection planning, complete sketching, sourcing, embroidery khakaas and swatches, sampling, production, QC, Zoho setup, SKUs, Shopify, campaign and website content, store allocation, replenishment, influencer placements and post-launch merchandising.",
       lookbookDir: "assets/lookbooks/saawaniya",
-      pageCount: 43
+      pageCount: 16
     },
     bagh: {
       season: "Festive 2025",
