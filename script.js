@@ -77,7 +77,7 @@
       meta: ["16–20 styles", "Jewel tones", "Brocade", "Hand + machine embroidery", "Sleeveless experimentation"],
       role: "Product and colour strategy, collection development, sourcing and production coordination, styling, campaign planning, digital launch, retail allocation, performance tracking, stock rotation and influencer-led visibility.",
       lookbookDir: "assets/lookbooks/bagh",
-      pageCount: 46
+      pageCount: 15
     },
     pastel: {
       season: "Spring / Summer 2025",
@@ -178,7 +178,7 @@
     if (role) role.textContent = c.role;
     if (gallery) {
       const pages = Array.from({length:c.pageCount}, (_,i) => String(i+1).padStart(2,"0"));
-      gallery.innerHTML = pages.map((p,i) => `<figure class="lookbook-page"><img loading="lazy" decoding="async" src="${c.lookbookDir}/${p}.webp?v=20261115h" alt="${c.title} lookbook, page ${i+1} of ${c.pageCount}"><figcaption>${String(i+1).padStart(2,"0")} / ${String(c.pageCount).padStart(2,"0")}</figcaption></figure>`).join("");
+      gallery.innerHTML = pages.map((p,i) => `<figure class="lookbook-page"><img loading="lazy" decoding="async" src="${c.lookbookDir}/${p}.webp?v=20261115i" alt="${c.title} lookbook, page ${i+1} of ${c.pageCount}"><figcaption>${String(i+1).padStart(2,"0")} / ${String(c.pageCount).padStart(2,"0")}</figcaption></figure>`).join("");
     }
 
     lastFocus = document.activeElement;
