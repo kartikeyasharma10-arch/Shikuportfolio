@@ -556,3 +556,4 @@ a:focus-visible,button:focus-visible{outline:2px solid #7b5c50;outline-offset:3p
 .ig-avatar{border-radius:50%;object-fit:cover;width:42px!important;height:42px!important}.ig-id strong{overflow:hidden}
 .ig-head{flex-wrap:wrap}.ig-id{flex:1 1 110px}.ig-btn{margin-left:auto}.ig-id span{white-space:normal}
 .ig-id strong{overflow:visible;font-size:13px;flex-wrap:wrap}
+.hero h1 span,.hero h1 span:nth-child(2){margin-left:0!important;text-indent:0}
