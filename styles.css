@@ -594,3 +594,10 @@ a:focus-visible,button:focus-visible{outline:2px solid #7b5c50;outline-offset:3p
 .collection-modal .modal-close:hover{background:#fff}
 .collection-modal .modal-close:hover span{transform:translateX(-3px)}
 @media(max-width:900px){.collection-modal .modal-close{left:16px;top:14px}}
+
+/* Collection picture is also a button */
+.collection-art{cursor:pointer}
+.collection-art:focus-visible{outline:2px solid #7b5c50;outline-offset:-6px}
+.art-hint{position:absolute;z-index:3;right:28px;bottom:28px;padding:11px 18px;border-radius:999px;background:rgba(243,240,235,.92);color:#26271f;font:500 11px/1 "DM Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase;opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s;pointer-events:none}
+.collection-art:hover .art-hint,.collection-art:focus-visible .art-hint{opacity:1;transform:none}
+@media(hover:none){.art-hint{opacity:1;transform:none;right:16px;bottom:16px}}

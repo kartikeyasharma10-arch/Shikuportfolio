@@ -162,7 +162,7 @@
     if (role) role.textContent = c.role;
     if (gallery) {
       const pages = Array.from({length:c.pageCount}, (_,i) => String(i+1).padStart(2,"0"));
-      gallery.innerHTML = pages.map((p,i) => `<figure class="lookbook-page"><img loading="lazy" decoding="async" src="${c.lookbookDir}/${p}.webp?v=20261115f" alt="${c.title} lookbook, page ${i+1} of ${c.pageCount}"><figcaption>${String(i+1).padStart(2,"0")} / ${String(c.pageCount).padStart(2,"0")}</figcaption></figure>`).join("");
+      gallery.innerHTML = pages.map((p,i) => `<figure class="lookbook-page"><img loading="lazy" decoding="async" src="${c.lookbookDir}/${p}.webp?v=20261115g" alt="${c.title} lookbook, page ${i+1} of ${c.pageCount}"><figcaption>${String(i+1).padStart(2,"0")} / ${String(c.pageCount).padStart(2,"0")}</figcaption></figure>`).join("");
     }
 
     lastFocus = document.activeElement;
@@ -196,12 +196,14 @@
   // ---------- Main collection switcher ----------
   const collectionHero = qs("#collectionHeroImage");
   const collectionFill = qs(".collection-fill");
+  const collectionArt = qs("#collectionArt");
 
   let shownKey = "saawaniya";
   const showImage = key => {
     const data = finalCollectionData[key];
     if (!data || key === shownKey) return;
     shownKey = key;
+    if (collectionArt) collectionArt.setAttribute("aria-label", `Open ${data.title} collection`);
     if (collectionHero) {
       collectionHero.style.opacity = "0.15";
       window.setTimeout(() => {
@@ -252,6 +254,14 @@
     const k = activeKey();
     if (k) showImage(k);   // back to the open collection's picture
   });
+
+  // the big picture opens whichever collection it is showing
+  if (collectionArt) {
+    collectionArt.addEventListener("click", () => openCollection(shownKey));
+    collectionArt.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openCollection(shownKey); }
+    });
+  }
 
   qsa(".collections-final .feature-open").forEach(btn => {
     btn.addEventListener("click", () => openCollection(btn.dataset.collection));
