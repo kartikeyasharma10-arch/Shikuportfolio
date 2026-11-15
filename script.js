@@ -162,7 +162,7 @@
     if (role) role.textContent = c.role;
     if (gallery) {
       const pages = Array.from({length:c.pageCount}, (_,i) => String(i+1).padStart(2,"0"));
-      gallery.innerHTML = pages.map((p,i) => `<figure class="lookbook-page"><img loading="lazy" decoding="async" src="${c.lookbookDir}/${p}.webp?v=20261115e" alt="${c.title} lookbook, page ${i+1} of ${c.pageCount}"><figcaption>${String(i+1).padStart(2,"0")} / ${String(c.pageCount).padStart(2,"0")}</figcaption></figure>`).join("");
+      gallery.innerHTML = pages.map((p,i) => `<figure class="lookbook-page"><img loading="lazy" decoding="async" src="${c.lookbookDir}/${p}.webp?v=20261115f" alt="${c.title} lookbook, page ${i+1} of ${c.pageCount}"><figcaption>${String(i+1).padStart(2,"0")} / ${String(c.pageCount).padStart(2,"0")}</figcaption></figure>`).join("");
     }
 
     lastFocus = document.activeElement;
@@ -197,6 +197,23 @@
   const collectionHero = qs("#collectionHeroImage");
   const collectionFill = qs(".collection-fill");
 
+  let shownKey = "saawaniya";
+  const showImage = key => {
+    const data = finalCollectionData[key];
+    if (!data || key === shownKey) return;
+    shownKey = key;
+    if (collectionHero) {
+      collectionHero.style.opacity = "0.15";
+      window.setTimeout(() => {
+        if (shownKey !== key) return;   // a newer hover took over
+        collectionHero.src = data.img;
+        collectionHero.alt = data.title + " campaign";
+        collectionHero.style.opacity = "1";
+      }, 150);
+    }
+    if (collectionFill) collectionFill.style.backgroundImage = `url("${data.img}")`;
+  };
+
   const activateCollection = key => {
     const data = finalCollectionData[key];
     if (!data) return;
@@ -209,21 +226,15 @@
       t.setAttribute("aria-expanded", on ? "true" : "false");
     });
 
-    if (collectionHero) {
-      collectionHero.style.opacity = "0.15";
-      window.setTimeout(() => {
-        collectionHero.src = data.img;
-        collectionHero.alt = data.title + " campaign";
-        collectionHero.style.opacity = "1";
-      }, 150);
-    }
-
-    if (collectionFill) collectionFill.style.backgroundImage = `url("${data.img}")`;
-
+    showImage(key);
   };
 
+  const activeKey = () => qs(".coll-item.active")?.dataset.collection;
   qsa(".collection-tab-final").forEach(tab => {
     const key = tab.dataset.collection;
+    // hovering (or keyboard focus) previews the picture; clicking opens the dropdown
+    tab.addEventListener("mouseenter", () => showImage(key));
+    tab.addEventListener("focus", () => showImage(key));
     tab.addEventListener("click", () => {
       const item = tab.closest(".coll-item");
       if (item.classList.contains("active")) {
@@ -235,6 +246,11 @@
         activateCollection(key);
       }
     });
+  });
+
+  qs("#collectionAccordion")?.addEventListener("mouseleave", () => {
+    const k = activeKey();
+    if (k) showImage(k);   // back to the open collection's picture
   });
 
   qsa(".collections-final .feature-open").forEach(btn => {
