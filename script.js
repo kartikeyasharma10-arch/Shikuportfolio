@@ -86,7 +86,7 @@
       meta: ["14 styles", "Summer silk", "Hand appliqué", "Pearls + crystals", "Co-ords + kurta sets", "Approved by the founders"],
       role: "Concept, design, material and embroidery development, sampling, production, styling and shoot direction, marketing, website launch, store merchandising and influencer placements.",
       lookbookDir: "assets/lookbooks/pastel",
-      pageCount: 43
+      pageCount: 14
     },
     shringaar: {
       season: "Festive / Wedding 2024",
@@ -95,7 +95,7 @@
       meta: ["~20 styles", "Tissue", "Chiniya silk", "Chanderi", "Brocade"],
       role: "Collection planning, design, embroidery swatches, multiple sample iterations, production, QC, product setup, campaign and social rollout, store dispatch and replenishment.",
       lookbookDir: "assets/lookbooks/shringaar",
-      pageCount: 25
+      pageCount: 15
     },
     aangan: {
       season: "Spring / Summer 2024",
@@ -104,7 +104,7 @@
       meta: ["~12 styles", "XXS–8XL", "Handwoven Chiniya", "Hand embroidery", "Small-batch launch"],
       role: "End-to-end product ownership from concept and silhouettes to production, launch, retail and continued replenishment. The collection continued to generate sales across multiple seasons after launch.",
       lookbookDir: "assets/lookbooks/aangan",
-      pageCount: 17
+      pageCount: 12
     }
   };
 
@@ -162,7 +162,7 @@
     if (role) role.textContent = c.role;
     if (gallery) {
       const pages = Array.from({length:c.pageCount}, (_,i) => String(i+1).padStart(2,"0"));
-      gallery.innerHTML = pages.map((p,i) => `<figure class="lookbook-page"><img loading="lazy" decoding="async" src="${c.lookbookDir}/${p}.webp?v=20261115b" alt="${c.title} lookbook, page ${i+1} of ${c.pageCount}"><figcaption>${String(i+1).padStart(2,"0")} / ${String(c.pageCount).padStart(2,"0")}</figcaption></figure>`).join("");
+      gallery.innerHTML = pages.map((p,i) => `<figure class="lookbook-page"><img loading="lazy" decoding="async" src="${c.lookbookDir}/${p}.webp?v=20261115c" alt="${c.title} lookbook, page ${i+1} of ${c.pageCount}"><figcaption>${String(i+1).padStart(2,"0")} / ${String(c.pageCount).padStart(2,"0")}</figcaption></figure>`).join("");
     }
 
     lastFocus = document.activeElement;
