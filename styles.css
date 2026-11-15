@@ -587,3 +587,10 @@ a:focus-visible,button:focus-visible{outline:2px solid #7b5c50;outline-offset:3p
   .coll-panel-inner{padding-left:26px}
 }
 @media(prefers-reduced-motion:reduce){.coll-panel,.coll-panel-inner,.coll-chevron{transition:none}}
+
+/* Lookbook pop-up: back button on the left instead of a cross on the right */
+.collection-modal .modal-close{left:28px;right:auto;top:22px;width:auto;height:auto;border-radius:999px;padding:11px 20px 11px 16px;display:inline-flex;align-items:center;gap:10px;font:500 11px/1 "DM Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#26271f;background:rgba(241,237,231,.92);border:1px solid #bdb6ae;transition:background .25s,transform .25s}
+.collection-modal .modal-close span{font-size:16px;line-height:1;transition:transform .25s}
+.collection-modal .modal-close:hover{background:#fff}
+.collection-modal .modal-close:hover span{transform:translateX(-3px)}
+@media(max-width:900px){.collection-modal .modal-close{left:16px;top:14px}}
