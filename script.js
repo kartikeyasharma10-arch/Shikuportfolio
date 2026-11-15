@@ -108,6 +108,16 @@
     }
   };
 
+  collections.noorani = {
+    season: "Summer collection",
+    title: "Noorani",
+    lead: "Inspired by the scenic beauty of nature and wild flowers. Noorani goes beyond trends to focus on intricate workmanship and delicate detail: sweet pastel colours, the beautiful drape of silk and hand embroidery that gives life to woven motifs. A special collection made with love.",
+    meta: ["Summer silk", "Pastel palette", "Hand embroidery", "Woven motifs", "Co-ords, jumpsuits + sarees"],
+    role: "End-to-end product ownership: concept and collection planning, design and sketching, sourcing, embroidery and weave-motif development, sampling, production and QC, product setup, styling and shoot coordination, campaign and website content, store allocation and replenishment.",
+    lookbookDir: "assets/lookbooks/noorani",
+    pageCount: 12
+  };
+
   const finalCollectionData = {
     saawaniya: {
       season: "Festive 2026",
@@ -132,6 +142,12 @@
       title: "Shringaar",
       copy: "Tissue, Chiniya silk, Chanderi and brocade shaped into a festive wardrobe rooted in adornment.",
       img: "assets/images/collection-shringaar.webp"
+    },
+    noorani: {
+      season: "Summer collection",
+      title: "Noorani",
+      copy: "Wild flowers and nature's scenic calm in sweet pastels, silk drapes and delicate hand embroidery. Workmanship over trends.",
+      img: "assets/images/collection-noorani.webp"
     },
     aangan: {
       season: "Spring / Summer 2024",
@@ -162,7 +178,7 @@
     if (role) role.textContent = c.role;
     if (gallery) {
       const pages = Array.from({length:c.pageCount}, (_,i) => String(i+1).padStart(2,"0"));
-      gallery.innerHTML = pages.map((p,i) => `<figure class="lookbook-page"><img loading="lazy" decoding="async" src="${c.lookbookDir}/${p}.webp?v=20261115g" alt="${c.title} lookbook, page ${i+1} of ${c.pageCount}"><figcaption>${String(i+1).padStart(2,"0")} / ${String(c.pageCount).padStart(2,"0")}</figcaption></figure>`).join("");
+      gallery.innerHTML = pages.map((p,i) => `<figure class="lookbook-page"><img loading="lazy" decoding="async" src="${c.lookbookDir}/${p}.webp?v=20261115h" alt="${c.title} lookbook, page ${i+1} of ${c.pageCount}"><figcaption>${String(i+1).padStart(2,"0")} / ${String(c.pageCount).padStart(2,"0")}</figcaption></figure>`).join("");
     }
 
     lastFocus = document.activeElement;
