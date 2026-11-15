@@ -178,7 +178,7 @@
     if (role) role.textContent = c.role;
     if (gallery) {
       const pages = Array.from({length:c.pageCount}, (_,i) => String(i+1).padStart(2,"0"));
-      gallery.innerHTML = pages.map((p,i) => `<figure class="lookbook-page"><img loading="lazy" decoding="async" src="${c.lookbookDir}/${p}.webp?v=20261115p" alt="${c.title} lookbook, page ${i+1} of ${c.pageCount}"><figcaption>${String(i+1).padStart(2,"0")} / ${String(c.pageCount).padStart(2,"0")}</figcaption></figure>`).join("");
+      gallery.innerHTML = pages.map((p,i) => `<figure class="lookbook-page"><img loading="lazy" decoding="async" src="${c.lookbookDir}/${p}.webp?v=20261115q" alt="${c.title} lookbook, page ${i+1} of ${c.pageCount}"><figcaption>${String(i+1).padStart(2,"0")} / ${String(c.pageCount).padStart(2,"0")}</figcaption></figure>`).join("");
     }
 
     lastFocus = document.activeElement;
