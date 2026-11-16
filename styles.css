@@ -867,3 +867,9 @@ a:focus-visible,button:focus-visible{outline:2px solid #7b5c50;outline-offset:3p
   .coll-item.hl .collection-tab-final{padding-left:12px}
   .coll-item .collection-tab-final{transition:padding .3s,opacity .3s,color .3s}
 }
+
+/* flick-to-page (phones): see phone-lite.js */
+@media(max-width:600px){
+  html.snap-on{scroll-snap-type:y mandatory}
+  .snap-pt{scroll-snap-align:start;scroll-snap-stop:always}
+}

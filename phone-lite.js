@@ -87,3 +87,46 @@
   // hide the bar while a lookbook is open
   if (modal) new MutationObserver(() => bar.classList.toggle("hide", modal.classList.contains("open"))).observe(modal, { attributes: true, attributeFilter: ["class"] });
 })();
+
+/* Flick-to-page: a slow drag scrolls freely; a quick flick glides to the next block and locks there. */
+(() => {
+  const mq = window.matchMedia("(max-width: 600px)");
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const root = document.documentElement;
+  const TARGETS = [".hero", "#about", "#collections", "#influencers", ".masoom-feature", ".rail-label", ".collab-wall",
+    "#brand", "#merchandising", ".process-final", ".retail-final", ".exhibition-final", "#fashion-tech", "#experience", "#contact"];
+  TARGETS.forEach(sel => document.querySelectorAll(sel).forEach(el => el.classList.add("snap-pt")));
+
+  let y0 = 0, x0 = 0, t0 = 0, samples = [], tracking = false, offTimer = null;
+  const lock = on => { root.classList.toggle("snap-on", on); };
+  const release = () => { clearTimeout(offTimer); offTimer = setTimeout(() => lock(false), 260); };
+
+  window.addEventListener("touchstart", e => {
+    if (!mq.matches || e.touches.length !== 1) { tracking = false; return; }
+    tracking = true; lock(false); clearTimeout(offTimer);
+    x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; t0 = performance.now();
+    samples = [{ y: y0, t: t0 }];
+  }, { passive: true });
+
+  window.addEventListener("touchmove", e => {
+    if (!tracking) return;
+    samples.push({ y: e.touches[0].clientY, t: performance.now() });
+    if (samples.length > 6) samples.shift();
+  }, { passive: true });
+
+  window.addEventListener("touchend", e => {
+    if (!tracking) return; tracking = false;
+    const t1 = performance.now();
+    const last = samples[samples.length - 1], first = samples.find(s => t1 - s.t < 110) || samples[0];
+    if (!last || !first || last === first) return;
+    const v = (last.y - first.y) / Math.max(1, last.t - first.t);          // px per ms, negative = finger moving up
+    const dy = last.y - y0, dx = (e.changedTouches[0]?.clientX ?? x0) - x0;
+    if (Math.abs(v) > 0.9 && Math.abs(dy) > 70 && Math.abs(dy) > Math.abs(dx) * 1.5) {
+      lock(true);                       // the browser now lands the fling on the next snap point
+      release();
+    }
+  }, { passive: true });
+
+  // keep the lock on while the page is still gliding, drop it once it settles
+  window.addEventListener("scroll", () => { if (root.classList.contains("snap-on")) release(); }, { passive: true });
+})();
