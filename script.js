@@ -178,7 +178,7 @@
     if (role) role.textContent = c.role;
     if (gallery) {
       const pages = Array.from({length:c.pageCount}, (_,i) => String(i+1).padStart(2,"0"));
-      gallery.innerHTML = pages.map((p,i) => `<figure class="lookbook-page"><img loading="lazy" decoding="async" src="${c.lookbookDir}/${p}.webp?v=20261115z" alt="${c.title} lookbook, page ${i+1} of ${c.pageCount}"><figcaption>${String(i+1).padStart(2,"0")} / ${String(c.pageCount).padStart(2,"0")}</figcaption></figure>`).join("");
+      gallery.innerHTML = pages.map((p,i) => `<figure class="lookbook-page"><img loading="lazy" decoding="async" src="${c.lookbookDir}/${p}.webp?v=20261116b" alt="${c.title} lookbook, page ${i+1} of ${c.pageCount}"><figcaption>${String(i+1).padStart(2,"0")} / ${String(c.pageCount).padStart(2,"0")}</figcaption></figure>`).join("");
     }
 
     lastFocus = document.activeElement;
@@ -219,6 +219,8 @@
     const data = finalCollectionData[key];
     if (!data || key === shownKey) return;
     shownKey = key;
+    qsa(".coll-item").forEach(it => it.classList.toggle("hl", it.dataset.collection === key));
+    qsa(".art-dots i").forEach(d => d.classList.toggle("on", d.dataset.k === key));
     if (collectionArt) collectionArt.setAttribute("aria-label", `Open ${data.title} collection`);
     if (collectionHero) {
       collectionHero.style.opacity = "0.15";
@@ -266,6 +268,49 @@
     });
   });
 
+  // ----- phone: the picture is a slideshow (auto-advance + swipe), the list highlights in step -----
+  const mqPhone = window.matchMedia("(max-width: 600px)");
+  const order = qsa(".collection-tab-final").map(t => t.dataset.collection);
+  qs(".coll-item.active")?.classList.add("hl");
+  if (mqPhone.matches) {   // phones start collapsed so the highlight is visible travelling down the list
+    const it = qs(".coll-item.active");
+    it?.classList.remove("active");
+    const t = it && qs(".collection-tab-final", it);
+    t?.classList.remove("active"); t?.setAttribute("aria-expanded", "false");
+  }
+  let pausedUntil = 0, timer = null, swiped = false, inView = false;
+  const pause = ms => { pausedUntil = Date.now() + ms; };
+  const step = d => showImage(order[(order.indexOf(shownKey) + d + order.length) % order.length]);
+
+  if (collectionArt) {
+    const dots = document.createElement("div");
+    dots.className = "art-dots"; dots.setAttribute("aria-hidden", "true");
+    order.forEach(k => { const d = document.createElement("i"); d.dataset.k = k; if (k === shownKey) d.classList.add("on"); dots.append(d); });
+    collectionArt.append(dots);
+    // warm the cache so slides do not flash
+    order.forEach(k => { const im = new Image(); im.src = finalCollectionData[k].img; });
+
+    let sx = 0, sy = 0;
+    collectionArt.addEventListener("touchstart", e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; swiped = false; pause(12000); }, { passive: true });
+    collectionArt.addEventListener("touchend", e => {
+      const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.3) {
+        swiped = true; step(dx < 0 ? 1 : -1); pause(12000);
+        window.setTimeout(() => { swiped = false; }, 400);
+      }
+    }, { passive: true });
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([en]) => { inView = en.isIntersecting; }, { threshold: 0.4 }).observe(collectionArt);
+    }
+  }
+  window.setInterval(() => {
+    if (!mqPhone.matches || reduceMotion || !inView || document.hidden) return;
+    if (Date.now() < pausedUntil || modal?.classList.contains("open")) return;
+    step(1);
+  }, 4200);
+  qsa(".collection-tab-final").forEach(t => t.addEventListener("click", () => pause(15000)));
+
   qs("#collectionAccordion")?.addEventListener("mouseleave", () => {
     const k = activeKey();
     if (k) showImage(k);   // back to the open collection's picture
@@ -273,7 +318,7 @@
 
   // the big picture opens whichever collection it is showing
   if (collectionArt) {
-    collectionArt.addEventListener("click", () => openCollection(shownKey));
+    collectionArt.addEventListener("click", () => { if (!swiped) openCollection(shownKey); });
     collectionArt.addEventListener("keydown", e => {
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openCollection(shownKey); }
     });

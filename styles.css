@@ -848,3 +848,22 @@ a:focus-visible,button:focus-visible{outline:2px solid #7b5c50;outline-offset:3p
   .social-role-tags,.social-flow{display:none!important}
   .merch-metrics-final{margin-bottom:6px}
 }
+
+/* CSS chevrons (arrow characters turn into emoji on phones) */
+.chev{display:inline-block;width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin-left:9px;vertical-align:2px;flex:none}
+.collection-modal .modal-close .chev{width:8px;height:8px;margin:0 2px 0 4px;font-size:0;vertical-align:baseline;transform:rotate(135deg)}
+.collection-modal .modal-close:hover .chev{transform:rotate(135deg) translate(2px,-2px)}
+.scroll-cue .chev{margin-left:8px}
+
+/* highlight follows the slideshow */
+.coll-item.hl .collection-tab-final{opacity:1;color:#7b5c50}
+.art-dots{display:none}
+@media(max-width:600px){
+  .collection-art{touch-action:pan-y}
+  .art-dots{display:flex;position:absolute;z-index:3;left:18px;bottom:26px;gap:7px;pointer-events:none}
+  .art-dots i{width:7px;height:7px;border-radius:99px;background:rgba(255,255,255,.55);transition:width .35s,background .35s}
+  .art-dots i.on{width:22px;background:#fff}
+  .coll-item.hl{box-shadow:inset 3px 0 0 #7b5c50;padding-left:0}
+  .coll-item.hl .collection-tab-final{padding-left:12px}
+  .coll-item .collection-tab-final{transition:padding .3s,opacity .3s,color .3s}
+}
