@@ -873,3 +873,10 @@ a:focus-visible,button:focus-visible{outline:2px solid #7b5c50;outline-offset:3p
   html.snap-on{scroll-snap-type:y mandatory}
   .snap-pt{scroll-snap-align:start;scroll-snap-stop:always}
 }
+
+/* phone: give the highlight bar breathing room (names are indented for everyone, so nothing jumps) */
+@media(max-width:600px){
+  .coll-item .collection-tab-final,.coll-item.hl .collection-tab-final{padding-left:18px!important}
+  .coll-item.hl{box-shadow:inset 3px 0 0 #7b5c50}
+  .coll-panel-inner{padding-left:44px!important}
+}
